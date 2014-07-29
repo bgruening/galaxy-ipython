@@ -47,7 +47,7 @@ empty_nb = """{
      "source": [
       "You can access your data via the dataset number. For example, `handle = get(42)`.\\n",
       "To save data, write your data to a file, and then call `put('filename.txt')`. The dataset will then be available in your galaxy history.\\n",
-      "To save your notebook to galaxy, click the button at the top right of the IPython interface, next to 'Cell Toolbar'"
+      "To save your notebook to galaxy, click the large green button at the top right of the IPython interface"
      ]
     },
     {
@@ -105,9 +105,6 @@ conf_file = {
 with open( os.path.join( temp_dir, 'conf.yaml' ), 'wb' ) as handle:
     handle.write( yaml.dump(conf_file, default_flow_style=False) )
 
-# TODO: Implement proper IPyNB datatype atop a proper JSON datatype
-# For now we assume all "text" datatypes are ipynbs.
-# <datatype extension="ipynb" type="galaxy.datatypes.data:Text" mimetype="application/json" subclass="True" display_in_upload="True"/>
 empty_nb_path = os.path.join(temp_dir, 'ipython_galaxy_notebook.ipynb')
 if hda.datatype.__class__.__name__ != "Ipynb":
     with open( empty_nb_path, 'w+' ) as handle:
