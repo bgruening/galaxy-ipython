@@ -25,13 +25,23 @@ try:
 except:
     galaxy_paster_port = None
 
-# Find out where we are
-viz_plugin_dir = config.get('app:main', 'visualization_plugins_directory')
-if not os.path.isabs(viz_plugin_dir):
-    # If it is NOT absolute, i.e. relative, append to galaxy root
-    viz_plugin_dir = os.path.join(galaxy_root_dir, viz_plugin_dir)
-# Get this plugin's directory
-viz_plugin_dir = os.path.join(viz_plugin_dir, "ipython")
+viz_plugin_dir = None
+try:
+    # Newer Python versions allow more, direct/correct
+    # access to the current plugin directory.
+    viz_plugin_dir = plugin_path
+except Exception:
+    pass
+
+if not viz_plugin_dir:
+    # Provide fallback for older versions.
+    viz_plugin_dir = config.get('app:main', 'visualization_plugins_directory')
+    if not os.path.isabs(viz_plugin_dir):
+        # If it is NOT absolute, i.e. relative, append to galaxy root
+        viz_plugin_dir = os.path.join(galaxy_root_dir, viz_plugin_dir)
+    # Get this plugin's directory
+    viz_plugin_dir = os.path.join(viz_plugin_dir, "ipython")
+
 # Store our template and configuration path
 our_config_dir = os.path.join(viz_plugin_dir, "config")
 our_template_dir = os.path.join(viz_plugin_dir, "templates")
@@ -75,11 +85,18 @@ if ':' in HOST:
 
 temp_dir = os.path.abspath( tempfile.mkdtemp() )
 
+try:
+    # Newer get_api_key will is better abstraction and will also generate the
+    # key if not available.
+    api_key = get_api_key()
+except Exception:
+    # fallback to deprecated pattern for older Galaxy instances.
+    api_key = trans.user.api_keys[0].key
 
 conf_file = {
     'history_id': history_id,
     'galaxy_url': request.application_url.rstrip('/'),
-    'api_key': trans.user.api_keys[0].key,
+    'api_key': api_key,
     'remote_host': request.remote_addr,
     'galaxy_paster_port': galaxy_paster_port,
     'docker_port': PORT,
