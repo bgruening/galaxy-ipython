@@ -1,7 +1,7 @@
 ![Info:](https://bytebucket.org/galaxy/galaxy-central/raw/0c1a9c09877422dd03f83ec343b298a9f5d947f6/static/images/icon_info_lrg.gif)
 
 
-This repository is not maintained anymore, as it has been integrated as core feature into [Galaxy](http://galaxyproject.org). Read more about this in the January 2015 Galaxy [NewsBrief](https://wiki.galaxyproject.org/DevNewsBriefs/2015_01_13) and in our [Wiki page](https://wiki.galaxyproject.org/Admin/IEs).
+This repository is not maintained anymore, as it has been integrated as core feature into [Galaxy](http://galaxyproject.org). Read more about this in the January 2015 Galaxy [NewsBrief](https://wiki.galaxyproject.org/DevNewsBriefs/2015_01_13) and in our [Community page](https://galaxyproject.org/admin/gies/).
 
 
 Galaxy IPython Integration
