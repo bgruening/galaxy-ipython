@@ -119,7 +119,7 @@ Authors
 =======
 
  * Björn Grüning <bjoern.gruening@gmail.com>
- * Eric Rasche <rasche.eric@yandex.ru>
+ * Helena Rasche <helena.rasche@gmail.com>
 
 
 History
